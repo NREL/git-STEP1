@@ -1,1 +1,1 @@
-This is where the frontend will live
+To run the frontend, open a terminal and navigate to the frontend folder. From here, run "python app.py" and click on the local host link to see the app!
