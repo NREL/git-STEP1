@@ -1,2 +1,2 @@
-- To run the frontend, open a terminal and navigate to the frontend folder.
+- To run the frontend, open a terminal and navigate to the frontend folder via "cd git-STEP1/frontend".
 - From here, run "python app.py" and click on the local host link to see the app!
