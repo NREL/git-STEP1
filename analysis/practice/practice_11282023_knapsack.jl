@@ -13,6 +13,7 @@ function solve_knapsack_problem(; profit::Vector{Float64},weight::Vector{Float64
     model = Model(GLPK.Optimizer)
     set_silent(model)
     @variable(model, x[1:n], Bin)
+    #@variable(model, 0 <= x[1:n] <= 1000, Int)
     @objective(model, Max, profit' * x)
     @constraint(model, weight' * x <= capacity)
     optimize!(model)
