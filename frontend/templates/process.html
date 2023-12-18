@@ -8,477 +8,133 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
-    <style>
-      .input-panel {
-        background-color: #e07700;
-        width: 100%;
-        height: 3.5rem;
-        color: white;
-        display: flex;
-        border-bottom: 1px solid white;
-        font-family: 'Roboto', sans-serif;
-        margin-top: 3rem;
-      }
-      .page-wrapper {
-        width: 80%;
-        height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .section-title {
-        color: #e07700;
-        font-family: 'Roboto', sans-serif;
-        font-size: 25px;
-        margin-top: 30px;
-        margin-bottom: 15px;
-        font-weight: 300;
-      }
-      .page-title {
-        color: white;
-        background-color: #0e6dc9;
-        width: 100%;
-        height: 4rem;
-        font-family: 'Roboto', sans-serif;
-        font-size: 40px;
-        display: flex;
-        justify-content: center;
-        font-weight: 300;
-        padding-top: 10px;
-      }
-      .icon {
-        font-size: 25px;
-      }
-      .panel-header {
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-right: auto;
-        font-size: 20px;
-      }
-      .results-button {
-        display: flex;
-        color: #fff;
-        background-color: #0079c2;
-        border: 1px solid #0079c2;
-        width: 11rem;
-        height: 3.5rem;
-        font-size: 15px;
-        font-family: 'Roboto', sans-serif;
-        border-radius: 5px;
-        margin-left: auto;
-        margin-right: 15px;
-        margin-top: auto;
-        margin-bottom: auto;
-      }
-      .results-button:hover {
-        color: #b7d6e9;
-        background-color: #3071a9;
-        border-color: #285e8e;
-        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
-        -moz-box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
-        box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
-        cursor: pointer;
-      }
-      .location-tab {
-        display: flex;
-        color: black;
-        background-color: #f3e7d9;
-        border-top: 2px solid lightgrey;
-        border-left: 2px solid lightgrey;
-        border-right: 2px solid lightgrey;
-        width: 10rem;
-        height: 2.5rem;
-        font-size: 16px;
-        font-family: 'Roboto', sans-serif;
-        border-radius: 5px 5px 0px 0px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2rem;
-      }
-      .location-tab:hover {
-        background-color: #f5efe9;
-        cursor: pointer;
-      }
-      .location-tab.active {
-        background-color: white;
-      }
-      .button-text {
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 5px;
-        font-weight: 300;
-      }
-      .button-wrapper {
-        display: flex;
-        background-color: rgb(228, 228, 228);
-        height: 5rem;
-        width: 100%;
-        margin-top: 30px;
-      }
-      .arrow-icon {
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: 10px;
-      }
-      .icon-wrapper {
-        display: flex;
-        justify-content: center;
-        width: 10px;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-right: 25px;
-        margin-left: 25px;
-      }
-      .panel-modal {
-        height: 35rem;
-        width: 100%;
-        background-color: #f3e7d9;
-        transition-property: height;
-        transition-duration: 0.5s;
-      }
-      .inner-modal {
-        display: block;
-      }
-      .input-label {
-        margin-left: auto;
-        margin-top: 3rem;
-        padding: 8px;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        font-weight: bold;
-        display: flex;
-      }
-      .modal-input {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        margin-top: 3rem;
-        border: 2px solid lightgrey;
-        border-radius: 5px;
-        height: 2rem;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        font-weight: 400;
-        width: 15rem;
-      }
-      .modal-input:focus {
-        outline: none;
-        border: 2px solid lightskyblue;
-        box-shadow: 0px 0px 5px 5px lightgrey;
-      }
-      .file-input {
-        margin-left: 1rem;
-        margin-right: auto;
-        margin-top: 3rem;
-        padding: 7px;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-      }
-      .help-icon {
-        color: #3071a9;
-        margin-top: 3.5rem;
-        margin-right: 1rem;
-        font-size: 20px;
-      }
-      .help-icon:hover {
-        cursor: pointer;
-      }
-    
-      .help-container {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      .help-popup {
-        visibility: hidden;
-        width: 160px;
-        height: 1rem;
-        background-color: white;
-        color: black;
-        text-align: center;
-        border-radius: 6px;
-        padding: 8px 0;
-        position: absolute;
-        z-index: 1;
-        bottom: 45%;
-        left: 30%;
-        margin-left: -80px;
-        box-shadow: 0px 0px 5px 5px lightgrey;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-      }
-
-      .help-popup::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: white transparent transparent transparent;
-      }
-
-      .show-help {
-        visibility: visible;
-      }
-
-      .input {
-        display: flex;
-      }
-
-      .dropdown {
-        display: block;
-        height: 2rem;
-        margin-top: 3.15rem;
-        /* margin-left: 1rem; */
-        margin-right: auto;
-        margin-left: 1rem;
-      }
-
-      .location-prompt {
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 18px;
-        padding-top: 2rem;
-        margin-left: 2rem;
-      }
-
-      .text-inputs {
-        display: block;
-        margin-right: 18rem;
-      }
-
-      .tabs {
-        display: block;
-      }
-
-      .tabs-area {
-        background-color: white;
-        border: 2px solid lightgrey;
-        border-radius: 5px;
-        height: 20rem;
-        width: 95%;
-        margin-left: 1.5rem;
-      }
-
-      .tabcontent {
-        display: none;
-      }
-
-      .google-maps {
-        margin-top: 2rem;
-        margin-left: 28rem;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        font-weight: 400;
-        font-size: 20px;
-      }
-
-      .workflow-modal {
-        height: 15rem;
-        width: 30rem;
-        border-radius: 10px;
-        box-shadow: 0px 5px 5px 2px lightgrey;
-        margin-left: 20rem;
-        display: block;
-      }
-
-      .workflow-header {
-        width: 100%;
-        height: 4rem;
-        background-color: #0e6dc9;
-        border-radius: 10px 10px 0px 0px;
-        color: white;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        display: flex;
-        font-size: 20px;
-      }
-
-      .workflow-points {
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        margin-left: 1rem;
-        display: flex;
-      }
-
-      .progress-bar {
-        width: 100%;
-        height: 3rem;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
-        display: flex;
-        background-color: lightgrey;
-      }
-
-      .progress-tab {
-        margin: auto;
-        background-color: #0e6dc9;
-        color: white;
-        height: 80%;
-        width: 20%;
-        display: flex;
-      }
-
-    </style>
+    <link rel="stylesheet" text="type/css" href="{{ url_for('static', filename='app.css') }}" >
 </head>
-<body style="background: rgb(252, 250, 250);">
-  <div class="page-wrapper">
-    <div>
-      <div class="page-title">First Solar Thermal Energy Planner (STEP1)</div>
-    </div>
-
-    <div class="progress-bar">
-      <div class="progress-tab">
-        <div style="margin: auto">
-          Geographical Inputs
-        </div>
-      </div>
-      <div class="progress-tab" style="background-color: #e07700">
-        <div style="margin: auto">
-          Process Inputs
-        </div>
-      </div>
-      <div class="progress-tab">
-        <div style="margin: auto">
-          Constraint Inputs
-        </div>
-      </div>
-      <div class="progress-tab">
-        <div style="margin: auto">
-          Results
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="section-title">Enter Process Input Data</div>
-    </div>
-
-    <div class="input-panel" id="input-panel2">
-      <div class="icon-wrapper">
-        <i class="fa fa-bolt icon"></i>
-      </div>
-      <div class="panel-header" >Processes</div>
-    </div>
-    <div class="panel-modal" style="height: 35rem">
-      <div class="inner-modal">
-
-        <div class="input" style="margin-right: 7rem">
-          <div class="input-label" >
-            Process Type
-          </div>
-          <div class="help-container">
-            <span class="help-popup" id="power-help">
-              Helpful info
-            </span>
-            <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-          </div>
-          <select class="dropdown">
-            <option value="Thermo">Thermodynamic</option>
-            <option value="Chemical">Chemical</option>
-            <option value="Mechanical">Mechanical</option>
-          </select>
+<body>
+    <div class="page-wrapper">
+        <div>
+            <div class="page-title">First Solar Thermal Energy Planner (STEP1)</div>
         </div>
 
-        <div class="input">
-          <div class="input-label" >
-            Maximum Process Temperature
-          </div>
-          <div class="help-container">
-            <span class="help-popup" id="power-help">
-              Helpful info
-            </span>
-            <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-          </div>
-          <input class="modal-input" placeholder="Enter a Temperature">
-          <select class="dropdown">
-            <option value="Thermo">Farhenheit</option>
-            <option value="Chemical">Celsius</option>
-            <option value="Mechanical">Kelvin</option>
-          </select>
-        </div>
-
-        <div class="input" style="margin-right: 3.5rem">
-          <div class="input-label">
-            Maximum Material Handling Throughput (Flow rate)
-          </div>
-          <div class="help-container">
-            <span class="help-popup" id="power-help">
-              Helpful info
-            </span>
-            <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-          </div>
-          <input class="modal-input" placeholder="Enter a Flow Rate">
-          <select class="dropdown">
-            <option value="m3/s">Meters cubed per second</option>
-            <option value="kg/s">Kilograms per second</option>
-            <option value="CFM">Cubic feet per minute</option>
-          </select>
-        </div>
-
-        <div class="input" style="margin-right: 22.25rem">
-          <div class="input-label">
-            Electric bill
-          </div>
-          <div class="help-container">
-            <span class="help-popup" id="power-help">
-              Helpful info
-            </span>
-            <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-          </div>
-          <input class="modal-input" placeholder="Enter in Electric Bill amount">
-        </div>
-
-        <div class="input" style="margin-right: 22.25rem">
-          <div class="input-label">
-            Gas bill
-          </div>
-          <div class="help-container">
-            <span class="help-popup" id="power-help">
-              Helpful info
-            </span>
-            <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-          </div>
-          <input class="modal-input" placeholder="Enter in Gas Bill amount">
-        </div>
-
-        <div class="input" style="margin-right: 10.5rem">
-          <div class="input-label">
-            Current Fuel Type
-          </div>
-          <div class="help-container">
-            <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
-          </div>
-          <select class="dropdown">
-            <option value="natural_gas">Natural Gas</option>
-            <option value="coal">Coal</option>
-            <option value="bio">Biofuel</option>
-          </select>
-        </div>
-      </div>
-
-    </div>
-    
-    
-    <div class="button-wrapper">
-        <form action="{{ url_for('location')}}" method="post" style="display: flex; height: 100%; width: 50%; margin-right: 47rem;">
-          <button type="submit" class="results-button">
-            <i class="fa fa-long-arrow-left arrow-icon"></i>
-              <div class="button-text">
-                  Geographical Inputs
-              </div>
-          </button>
-        </form>
-        <form action="{{ url_for('constraints')}}" method="post" style="display: flex; height: 100%; width: 50%;">
-            <button type="submit" class="results-button">
-                <div class="button-text">
+        <div class="progress-bar">
+            <div class="progress-tab">
+                <i class="fa fa-check-square-o icon" style="margin-top: auto; margin-bottom: auto; margin-left: 1rem"></i>
+                <div style="margin: auto">
+                    Geographical Inputs
+                </div>
+            </div>
+            <div class="progress-tab" style="background-color: #e07700">
+                <i></i>
+                <div style="margin: auto">
+                    Process Inputs
+                </div>
+            </div>
+            <div class="progress-tab">
+                <div style="margin: auto">
                     Constraint Inputs
                 </div>
-                <i class="fa fa-long-arrow-right arrow-icon"></i>
+            </div>
+            <div class="progress-tab">
+                <div style="margin: auto">
+                    Results
+                </div>
+            </div>
+        </div>
+
+        <form action="{{ url_for('location') }}" method="post">
+            <button type="submit" class="results-button" style="margin-left: 0; width: 5rem; height: 2rem;">
+              <i class="fa fa-long-arrow-left arrow-icon"></i>
+              <div class="button-text">
+                Back
+              </div>
             </button>
         </form>
+
+        <div>
+            <div class="section-title" >Enter Process Input Data</div>
+        </div>
+
+        <div class="input-panel" id="input-panel2" style="width: 100%">
+            <div class="icon-wrapper">
+              <i class="fa fa-bolt icon"></i>
+            </div>
+            <div class="panel-header" >Processes</div>
+        </div>
+
+        <form action="{{ url_for('constraints')}}" method="post">
+            <div class="panel-modal" style="height: 35rem">
+                <div class="inner-modal">
+                    <div class="input" style="margin-right: 32.25rem">
+                        <label for="process_type" class="input-label">
+                            Process Type
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <select id="process_type" name="process_type" placeholder="process_type" required="required" class="dropdown">
+                            <option value="Thermo">Thermodynamic</option>
+                            <option value="Chemical">Chemical</option>
+                            <option value="Mechanical">Mechanical</option>
+                        </select>
+                    </div>
+                    <div class="input" style="margin-right: 16.75rem">
+                        <label for="MPT" class="input-label">
+                            Maximum Process Temperature
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <input class="modal-input" name="MPT" required="required" placeholder="Enter a Temperature">
+                        <select id="MPT_units" name="MPT_units" placeholder="MPT_units" required="required" class="dropdown">
+                            <option value="Farhenheit">Farhenheit</option>
+                            <option value="Celsius">Celsius</option>
+                            <option value="Kelvin">Kelvin</option>
+                        </select>
+                    </div>
+                    <div class="input" style="margin-right: 11.5rem">
+                        <label for="MMHT" class="input-label">
+                            Maximum Material Handling Throughput (Flow rate)
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <input class="modal-input" name="MMHT" required="required" placeholder="Enter a Flow Rate">
+                        <select id="MPT_units" name="MPT_units" placeholder="MMHT_units" required="required" class="dropdown">
+                            <option value="m3/s">Meters cubed per second</option>
+                            <option value="kg/s">Kilograms per second</option>
+                            <option value="CFM">Cubic feet per minute</option>
+                        </select>
+                    </div>
+                    <div class="input" style="margin-right: 23.5rem">
+                        <label for="electric_bill" class="input-label">
+                            Electric Bill
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <input class="modal-input" name="electric_bill" required="required" placeholder="Enter a Dollar amount">
+                    </div>
+                    <div class="input" style="margin-right: 23.5rem">
+                        <label for="gas_bill" class="input-label">
+                            Gas Bill
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <input class="modal-input" name="gas_bill" required="required" placeholder="Enter a Dollar amount">
+                    </div>
+                    <div class="input" style="margin-right: 33.9rem">
+                        <label for="CFT" class="input-label">
+                            Current Fuel Type
+                        </label>
+                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
+                        <select id="CFT" name="CFT" placeholder="CFT" required="required" class="dropdown">
+                            <option value="natural_gas">Natural Gas</option>
+                            <option value="coal">Coal</option>
+                            <option value="bio">Biofuel</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="button-wrapper">
+                <button type="submit" class="results-button">
+                    <div class="button-text">
+                        Constraint Inputs
+                    </div>
+                    <i class="fa fa-long-arrow-right arrow-icon"></i>
+                </button>
+            </div>
+        </form>
     </div>
-  </div>
 </body>
 </html>
