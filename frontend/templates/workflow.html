@@ -97,7 +97,7 @@
 
       .workflow-modal {
         height: 15rem;
-        width: 40rem;
+        width: 30rem;
         border-radius: 10px;
         box-shadow: 0px 5px 5px 2px lightgrey;
         margin-left: auto;
@@ -135,26 +135,30 @@
     </div>
 
     <div>
-      <div class="section-title">Welcome to STEP1!</div>
+      <div class="section-title">Workflow of STEP1</div>
     </div>
 
     <div class="workflow-modal">
       <div class="workflow-header">
         <div style="margin: auto">
-          Here is what STEP1 is used for and why this tool is important:
+          How to use STEP1:
         </div>
       </div>
       <div class="workflow-points">
         <i class="fa fa-circle" style="margin-top: auto; margin-bottom: auto; margin-right: 0.5rem; font-size: 8px"></i>
-        Assisting industrial factories with decisions on what type of heat to use
+        Enter in Geographical inputs
       </div>
       <div class="workflow-points">
         <i class="fa fa-circle" style="margin-top: auto; margin-bottom: auto; margin-right: 0.5rem; font-size:8px"></i>
-        Helping decarbonize the industry with Concentrated Solar Power
+        Enter in Processes inputs
       </div>
       <div class="workflow-points">
         <i class="fa fa-circle" style="margin-top: auto; margin-bottom: auto; margin-right: 0.5rem; font-size: 8px"></i>
-        Helping industrial factories save money in these decisions
+        Enter in User-Defined Constraints
+      </div>
+      <div class="workflow-points">
+        <i class="fa fa-circle" style="margin-top: auto; margin-bottom: auto; margin-right: 0.5rem; font-size: 8px"></i>
+        Press the Get Results button to see your results
       </div>
     </div>
 
@@ -162,7 +166,7 @@
         <form action="{{ url_for('location')}}" method="post" style="display: flex; height: 100%;">
             <button type="submit" class="results-button">
                 <div class="button-text">
-                    Workflow
+                    Geographical Inputs
                 </div>
                 <i class="fa fa-long-arrow-right arrow-icon"></i>
             </button>

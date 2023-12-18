@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STEP1</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <!-- <link href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css" rel="stylesheet"> -->
+    <script id="search-js" defer="" src="https://api.mapbox.com/search-js/v1.0.0-beta.18/web.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      .input-panel {
+        background-color: #e07700;
+        width: 100%;
+        height: 3.5rem;
+        color: white;
+        display: flex;
+        border-bottom: 1px solid white;
+        font-family: 'Roboto', sans-serif;
+        margin-top: 3rem;
+      }
+      .page-wrapper {
+        width: 80%;
+        height: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .section-title {
+        color: #e07700;
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 300;
+      }
+      .page-title {
+        color: white;
+        background-color: #0e6dc9;
+        width: 100%;
+        height: 4rem;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        display: flex;
+        justify-content: center;
+        font-weight: 300;
+        padding-top: 10px;
+      }
+      .icon {
+        font-size: 25px;
+      }
+      .panel-header {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: auto;
+        font-size: 20px;
+      }
+      .results-button {
+        display: flex;
+        color: #fff;
+        background-color: #0079c2;
+        border: 1px solid #0079c2;
+        width: 11rem;
+        height: 3.5rem;
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+        border-radius: 5px;
+        margin-left: auto;
+        margin-right: 15px;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+      .results-button:hover {
+        color: #b7d6e9;
+        background-color: #3071a9;
+        border-color: #285e8e;
+        -webkit-box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
+        -moz-box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
+        box-shadow: inset 0px 2px 2px 0px rgba(50, 50, 50, 0.4);
+        cursor: pointer;
+      }
+      .location-tab {
+        display: flex;
+        color: black;
+        background-color: #f3e7d9;
+        border-top: 2px solid lightgrey;
+        border-left: 2px solid lightgrey;
+        border-right: 2px solid lightgrey;
+        width: 10rem;
+        height: 2.5rem;
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        border-radius: 5px 5px 0px 0px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+      }
+      .location-tab:hover {
+        background-color: #f5efe9;
+        cursor: pointer;
+      }
+      .location-tab.active {
+        background-color: white;
+      }
+      .button-text {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 5px;
+        font-weight: 300;
+      }
+      .button-wrapper {
+        display: flex;
+        background-color: rgb(228, 228, 228);
+        height: 5rem;
+        width: 100%;
+        margin-top: 30px;
+      }
+      .arrow-icon {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 10px;
+      }
+      .icon-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 25px;
+        margin-left: 25px;
+      }
+      .panel-modal {
+        height: 50rem;
+        width: 100%;
+        background-color: #f3e7d9;
+        transition-property: height;
+        transition-duration: 0.5s;
+      }
+      .inner-modal {
+        display: block;
+      }
+      .input-label {
+        margin-left: auto;
+        margin-top: 3rem;
+        padding: 8px;
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        font-weight: bold;
+        display: flex;
+      }
+      .modal-input {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 3rem;
+        border: 2px solid lightgrey;
+        border-radius: 5px;
+        height: 2rem;
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        font-weight: 400;
+        width: 15rem;
+      }
+      .modal-input:focus {
+        outline: none;
+        border: 2px solid lightskyblue;
+        box-shadow: 0px 0px 5px 5px lightgrey;
+      }
+      .help-icon {
+        color: #3071a9;
+        margin-top: 3.5rem;
+        margin-right: 1rem;
+        font-size: 20px;
+      }
+      .help-icon:hover {
+        cursor: pointer;
+      }
+    
+      .help-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      .input {
+        display: flex;
+        border: none;
+      }
+
+      .location-prompt {
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        padding-top: 2rem;
+        margin-left: 2rem;
+      }
+
+      .text-inputs {
+        display: block;
+        margin-right: 18rem;
+      }
+
+      .tabs {
+        display: block;
+      }
+
+      .tabs-area {
+        background-color: white;
+        border: 2px solid lightgrey;
+        border-radius: 5px;
+        height: 30rem;
+        width: 95%;
+        margin-left: 1.5rem;
+      }
+
+      .tabcontent {
+        display: none;
+      }
+
+      .google-maps {
+        margin-top: 2rem;
+        margin-left: 28rem;
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+      }
+
+      .dropdown {
+        display: block;
+        height: 2rem;
+        margin-top: 3.15rem;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 3rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-family: Roboto, "Helvetica Neue", Helvetica, sans-serif;
+        display: flex;
+        background-color: lightgrey;
+      }
+
+      .progress-tab {
+        margin: auto;
+        background-color: #0e6dc9;
+        color: white;
+        height: 80%;
+        width: 20%;
+        display: flex;
+      }
+
+    </style>
+</head>
+<body style="background: rgb(252, 250, 250);">
+  <div class="page-wrapper">
+    <div>
+      <div class="page-title">First Solar Thermal Energy Planner (STEP1)</div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-tab" style="background-color: #e07700">
+        <div style="margin: auto">
+          Geographical Inputs
+        </div>
+      </div>
+      <div class="progress-tab">
+        <div style="margin: auto">
+          Process Inputs
+        </div>
+      </div>
+      <div class="progress-tab">
+        <div style="margin: auto">
+          Constraint Inputs
+        </div>
+      </div>
+      <div class="progress-tab">
+        <div style="margin: auto">
+          Results
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Enter Geographical Input Data</div>
+    </div>
+
+    <div class="input-panel" id="input-panel1">
+      <div class="icon-wrapper">
+        <i class="fa fa-map icon"></i>
+      </div>
+      <div class="panel-header">Geographical</div>
+    </div>
+
+    <div class="panel-modal" style="height: 40rem">
+
+      <div class="tabs">
+        <div class="location-prompt">
+          Choose whether you would like to define your location by either text input or google maps.
+        </div>
+        <div style="display: flex">
+          <div class="location-tab" onclick="openTab(event, 'text-inputs')" style="margin-right: 0.5rem; width: 8rem; margin-left: 3rem;" id="text-inputs-tab">
+            <i class="fa fa-map-marker" style="margin: auto; margin-left: 0.75rem"></i>
+            <div class="button-text" style="font-size: 18px; margin-right: 1rem">
+              Text Input
+            </div>
+          </div>
+          <div class="location-tab" onclick="openTab(event, 'google-maps')" style="margin-left: 0.5rem" id="google-maps-tab">
+            <i class="fa fa-globe" style="margin: auto; margin-left: 0.75rem"></i>
+            <div class="button-text" style="font-size: 18px; margin-right: 1rem">
+              Google Maps
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs-area">
+        <div class="tabcontent" id="text-inputs">
+          <div class="text-inputs">
+            <div class="input" style="margin-right: 8.3rem">
+              <div class="input-label">
+                Address
+              </div>
+              <div class="help-container">
+                <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
+              </div>
+              <input class="modal-input" placeholder="Enter an Address">
+            </div>
+  
+            <div class="input" style="margin-right: 8.3rem">
+              <div class="input-label">
+                Zip Code
+              </div>
+              <div class="help-container">
+              <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
+              </div>
+              <input class="modal-input" placeholder="Enter a Zip Code">
+            </div>
+            
+            <div class="input" style="margin-right: 8.3rem">
+              <div class="input-label">
+                City
+              </div>
+              <div class="help-container">
+              <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
+              </div>
+              <input class="modal-input" placeholder="Enter a City">
+            </div>
+
+            <div class="input">
+              <div class="input-label">
+                Land Unit Price
+              </div>
+              <div class="help-container">
+              <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
+              </div>
+              <input class="modal-input" placeholder="Enter a Land Unit Price">
+              <select class="dropdown">
+                <option value="acre">Dollars per acre</option>
+                <option value="hectare">Dollars per hectare</option>
+              </select>
+            </div>
+
+            <div class="input" style="margin-right: 1.25rem">
+              <div class="input-label">
+                Land Area
+              </div>
+              <div class="help-container">
+                <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
+              </div>
+              <input class="modal-input" placeholder="Enter a Land Area">
+              <select class="dropdown">
+                <option value="acres">Acres</option>
+                <option value="hectares">Hectares</option>
+                <option value="meters">Meters squared</option>
+                <option value="feet">Feet squared</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tabcontent" id="google-maps">
+          <div id='map' style='width: 400px; height: 300px; margin: auto; margin-top: 5rem'>
+          </div>
+        </div>
+
+      </div>
+  
+    </div>
+
+   
+    <div class="button-wrapper">
+        <form action="{{ url_for('workflow')}}" method="post" style="display: flex; height: 100%; width: 50%; margin-right: 47rem;">
+          <button type="submit" class="results-button">
+              <i class="fa fa-long-arrow-left arrow-icon"></i>
+              <div class="button-text">
+                  Workflow
+              </div>
+          </button>
+        </form>
+        <form action="{{ url_for('process')}}" method="post" style="display: flex; height: 100%; width: 50%;">
+            <button type="submit" class="results-button">
+                <div class="button-text">
+                    Process Inputs
+                </div>
+                <i class="fa fa-long-arrow-right arrow-icon"></i>
+            </button>
+        </form>
+    </div>
+  </div>
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("location-tab");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    mapboxgl.accessToken = 'pk.eyJ1IjoiamFyZXRrYWRsZWMiLCJhIjoiY2xwdm1qNzB5MDV4ZTJpcWV4c2VqOWgyZCJ9.2d464B9zhrI2yAd3mo4V9w';
+    const map = new mapboxgl.Map({
+      container: 'map', // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-105.23, 39.75], // starting position [lng, lat]
+      zoom: 9, // starting zoom
+    });
+    const searchJS = document.getElementById('search-js');
+    searchJS.onload = function () {
+      const searchBox = new MapboxSearchBox();
+      searchBox.accessToken = 'pk.eyJ1IjoiamFyZXRrYWRsZWMiLCJhIjoiY2xwdm1qNzB5MDV4ZTJpcWV4c2VqOWgyZCJ9.2d464B9zhrI2yAd3mo4V9w';
+      searchBox.options = {
+        types: 'address,poi',
+        proximity: [-105.23, 39.75]
+      };
+      searchBox.marker = true;
+      searchBox.mapboxgl = mapboxgl;
+      map.addControl(searchBox);
+    };
+  </script>
+</body>
+</html>
