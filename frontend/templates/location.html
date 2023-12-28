@@ -65,54 +65,64 @@
         </div>
 
         <form action="{{ url_for('process')}}" method="post">
-            <div class="panel-modal" style="height: 50rem">
+            <div class="panel-modal" style="height: 45rem">
 
-                <div class="input" style="margin-right: 20rem">
-                    <label class="input-label">
-                      Latitude
-                    </label>
-                    <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
-                    <input class="modal-input" placeholder="Enter a latitude" required="required">
+                <div class="input" style="height: 5rem; display: flex">
+                    <div style="width: 50%; height: 100%; display: flex">
+                      <label class="input-label" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem;">
+                        Latitude
+                      </label>
+                    </div>
+                    <div style="width: 50%; height: 100%; display: flex">
+                      <input class="modal-input" name="latitude" placeholder="Enter a latitude" required="required" style="margin-top: auto; margin-bottom: auto; margin-left: 1rem; width: 10rem">
+                    </div>
                 </div>
 
-                <div class="input" style="margin-right: 20rem">
-                    <label class="input-label">
+                <div class="input" style="height: 5rem; display: flex">
+                  <div style="width: 50%; height: 100%; display: flex">
+                    <label class="input-label" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem;">
                       Longitude
                     </label>
-                    <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
-                    <input class="modal-input" placeholder="Enter a longitude" required="required">
+                  </div>
+                  <div style="width: 50%; height: 100%; display: flex">
+                    <input class="modal-input" name="longitude" placeholder="Enter a longitude" required="required" style="margin-top: auto; margin-bottom: auto; margin-left: 1rem; width: 10rem">
+                  </div>
                 </div>
 
-                <div class="input" style="margin-right: 10.25rem">
-                    <label class="input-label">
-                      Land Unit Price
-                    </label>
-                    <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
-                    <input class="modal-input" placeholder="Enter a dollar amount" required="required">
-                    <select class="dropdown">
-                      <option value="acre">Dollars per acre</option>
-                      <option value="hectare">Dollars per hectare</option>
-                    </select>
+                <div class="input" style="height: 5rem; display: flex">
+                    <div style="width: 50%; height: 100%; display: flex">
+                      <label class="input-label" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem;">
+                        Land Unit Price
+                      </label>
+                    </div>
+                    <div style="width: 50%; height: 100%; display: flex">
+                      <input class="modal-input" name="land_unit_price" placeholder="2000" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem; margin-left: 1rem; width: 10rem">
+                      <select class="dropdown" name="land_unit_price_units" style="margin-top: auto; margin-bottom: auto; margin-left: 1rem; margin-right: auto;">
+                        <option value="$/acre">Dollars per acre</option>
+                        <option value="$/hectare">Dollars per hectare</option>
+                      </select>
+                    </div>
                 </div>
 
-                <div class="input" style="margin-right: 11.4rem">
-                    <label class="input-label">
+                <div class="input" style="height: 5rem; display: flex">
+                  <div style="width: 50%; height: 100%; display: flex">
+                    <label class="input-label" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem;">
                       Land Area
                     </label>
-                    <div class="help-container">
-                      <i class="fa fa-question-circle help-icon" id="help-icon-location"></i>
-                    </div>
-                    <input class="modal-input" placeholder="Enter an area" required="required">
-                    <select class="dropdown">
-                      <option value="acres">Acres</option>
-                      <option value="hectares">Hectares</option>
-                      <option value="meters">Meters squared</option>
+                  </div>
+                  <div style="width: 50%; height: 100%; display: flex">
+                    <input class="modal-input" placeholder="Enter an area" name="land_area" required="required" style="margin-top: auto; margin-bottom: auto; margin-right: 1rem; margin-left: 1rem; width: 10rem">
+                    <select class="dropdown" name="land_area_units" style="margin-top: auto; margin-bottom: auto; margin-left: 1rem">
+                      <option value="acre">Acres</option>
+                      <option value="hectare">Hectares</option>
+                      <option value="meter">Meters squared</option>
                       <option value="feet">Feet squared</option>
                     </select>
+                  </div>
                 </div>
 
-                <div style="background-color: lightgrey; width: 850px; border-radius: 5px; margin-top: 5rem; margin-left: auto; margin-right: auto; padding: 20px">
-                    <div id='map' style='width: 800px; height: 300px;'>
+                <div style="background-color: lightgrey; width: 70%; height: 40%; margin-top: 2rem; border-radius: 5px; margin-left: auto; margin-right: auto; padding: 20px">
+                    <div id='map' style='width: 100%; height: 100%;'>
                     </div>
                 </div>
                 
