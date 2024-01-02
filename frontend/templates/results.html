@@ -58,34 +58,75 @@
     </div>
 
     <div>
-      <h2>
-        Hemisphere:
-      </h2>
-      {{ hemisphere }}
+      <div style="background-color: #0e6dc9; height: 2rem; display: flex; margin-top: 2rem; border-top-right-radius: 5px; border-top-left-radius: 5px">
+        <i class="fa fa-globe" style="color: white; font-size: 20px; margin-left: 1rem;  margin-top: auto; margin-bottom: auto"></i>
+        <div style="color: white; font-size: 20px; margin-left: 0.5rem;  margin-top: auto; margin-bottom: auto">
+          Hemisphere
+        </div>
+      </div>
+      <div style="background-color: lightgrey; height: 5rem; display: flex; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
+        <div style="margin-left: 1rem; margin-top: auto; margin-bottom: auto">
+          {{ hemisphere }}
+        </div>
+      </div>
     </div>
     <div>
-      <h2>
-        Total Cost:
-      </h2>
-      {{ total_cost }}
+      <div style="background-color: #0e6dc9; height: 2rem; display: flex; margin-top: 2rem; border-top-right-radius: 5px; border-top-left-radius: 5px">
+        <i class="fa fa-usd" style="color: white; font-size: 20px; margin-left: 1rem;  margin-top: auto; margin-bottom: auto"></i>
+        <div style="color: white; font-size: 20px; margin-left: 0.5rem;  margin-top: auto; margin-bottom: auto">
+          Total Cost
+        </div>
+      </div>
+      <div style="background-color: lightgrey; height: 5rem; display: flex; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
+        <div style="margin-left: 1rem; margin-top: auto; margin-bottom: auto">
+          {{ total_cost }}
+        </div>
+      </div>
     </div>
     <div>
-      <h2>
-        Maximum Cost Exceeded:
-      </h2>
-      {{ max_cost_exceeded }}
+      <div style="background-color: #0e6dc9; height: 2rem; display: flex; margin-top: 2rem; border-top-right-radius: 5px; border-top-left-radius: 5px">
+        <i class="fa fa-tasks" style="color: white; font-size: 20px; margin-left: 1rem;  margin-top: auto; margin-bottom: auto"></i>
+        <div style="color: white; font-size: 20px; margin-left: 0.5rem;  margin-top: auto; margin-bottom: auto">
+          Maximum Cost Exceeded
+        </div>
+      </div>
+      <div style="background-color: lightgrey; height: 5rem; display: flex; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
+        <div style="margin-left: 1rem; margin-top: auto; margin-bottom: auto">
+          {{ max_cost_exceeded }}
+        </div>
+      </div>
     </div>
     <div>
-      <h2>
-        State of Charge TES:
-      </h2>
-      <canvas id="myChart" style="width:100%;"></canvas>
+      <div style="background-color: #0e6dc9; height: 2rem; display: flex; margin-top: 2rem; border-top-right-radius: 5px; border-top-left-radius: 5px">
+        <i class="fa fa-line-chart" style="color: white; font-size: 20px; margin-left: 1rem;  margin-top: auto; margin-bottom: auto"></i>
+        <div style="color: white; font-size: 20px; margin-left: 0.5rem;  margin-top: auto; margin-bottom: auto">
+          State of Charge TES
+        </div>
+      </div>
+      <div style="background-color: lightgrey; height: 40rem; display: flex; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
+        <div style="rotate: 270deg; margin-top: auto; margin-bottom: auto; font-size: 12px; width: 7rem">
+          State of Charge
+        </div>
+        <div style="margin-top: auto; margin-bottom: auto; margin-right: 1rem; display: block">
+          <canvas id="myChart" style="width:100%; height: 35rem"></canvas>
+          <div style="margin-right: auto; margin-left: auto; margin-top: 1rem; font-size: 12px; width: 10rem">
+            Hours in the year
+          </div>
+        </div>
+      </div>
     </div>
     <div>
-      <h2>
-        Error:
-      </h2>
-      {{ error }}
+      <div style="background-color: #0e6dc9; height: 2rem; display: flex; margin-top: 2rem; border-top-right-radius: 5px; border-top-left-radius: 5px">
+        <i class="fa fa-exclamation-circle" style="color: white; font-size: 20px; margin-left: 1rem;  margin-top: auto; margin-bottom: auto"></i>
+        <div style="color: white; font-size: 20px; margin-left: 0.5rem;  margin-top: auto; margin-bottom: auto">
+          Error
+        </div>
+      </div>
+      <div style="background-color: lightgrey; height: 5rem; display: flex; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
+        <div style="margin-left: 1rem; margin-top: auto; margin-bottom: auto">
+          {{ error }}
+        </div>
+      </div>
     </div>
 
   </div>
@@ -106,13 +147,19 @@
           lineTension: 0,
           backgroundColor: "rgba(0,0,255,1.0)",
           borderColor: "rgba(0,0,255,0.1)",
+          pointBackgroundColor: "#0e6dc9",
           data: yValues
         }]
       },
       options: {
         legend: {display: false},
         scales: {
-          yAxes: [{ticks: {min: 0, max:1}}]
+          yAxes: [{
+            ticks: {
+              min: 0, 
+              max:1
+            }
+          }]
         }
       }
     });
