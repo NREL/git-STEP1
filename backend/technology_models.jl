@@ -1,7 +1,8 @@
 # The aim of this script is to run appropriate technology models based on media and temperature
 import HTTP
-import JSON
+using JSON
 using Plots
+include("technology_models_ssc.jl")
 
 ### Inputs
 media = 2           # 0 = water, 1 = steam, 2 = air needed by the industrial process
@@ -72,6 +73,7 @@ function get_pv_production(latitude::Real, longitude::Real)
     try
         @info "Querying PVWatts for production factor and ambient air temperature... "
         r = HTTP.get(url, keepalive=true, readtimeout=10)
+        print(r)
         response = JSON.parse(String(r.body))
         if r.status != 200
             throw(@error("Bad response from PVWatts: $(response["errors"])"))
@@ -107,30 +109,41 @@ if length(technologies) > 1
     end
 end
 
+R = Dict()
+print(technologies)
+for k in technologies
+    if k == "pv"
+        R[k] = get_pv_production(lat,lon)
+    else
+        inputs = Dict()
+        outputs = ["gen"]
+        R[k] = run_ssc(k,inputs,outputs)
+    end 
+end
 
-if "pv" in technologies
-    output, tamb = get_pv_production(lat,lon)
-    time = LinRange(1,length(output),length(output))
-    plot(time,output)
-end
-if "evactube" in technologies
-    print("run func_get_evactube_production profile \n")
-end
-if "flatplate" in technologies
-    print("run func_get_flatplate_production profile \n")
-end
-if "lf" in technologies
-    print("run func_get_lf_production profile \n")
-end
-if "ptc" in technologies
-    print("run func_get_ptc_production profile \n")
-end
-if "mst" in technologies
-    print("run func_get_mst_production profile \n")
-end
-if "particle_tower" in technologies
-    print("run func_get_power_tower_production profile \n")
-end
-if "particle_elec" in technologies
-    print("run func_get_particle_elec_production profile \n")
-end
+# if "pv" in technologies
+#     output, tamb = get_pv_production(lat,lon)
+#     time = LinRange(1,length(output),length(output))
+#     plot(time,output)
+# end
+# if "evactube" in technologies
+#     print("run \n")
+# end
+# if "flatplate" in technologies
+#     print("run func_get_flatplate_production profile \n")
+# end
+# if "lf" in technologies
+#     print("run func_get_lf_production profile \n")
+# end
+# if "ptc" in technologies
+#     print("run func_get_ptc_production profile \n")
+# end
+# if "mst" in technologies
+#     print("run func_get_mst_production profile \n")
+# end
+# if "particle_tower" in technologies
+#     print("run func_get_power_tower_production profile \n")
+# end
+# if "particle_elec" in technologies
+#     print("run func_get_particle_elec_production profile \n")
+# end

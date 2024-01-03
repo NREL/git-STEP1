@@ -121,6 +121,7 @@ fields = convert(Array{Float64}, fields)
 @ccall hdl.ssc_data_set_array(wind_resource::Ptr{Cvoid}, "fields"::Cstring, 
     fields::Ptr{Cdouble}, length(fields)::Cint)::Cvoid
 
+print(resources)
 nrows, ncols = size(resources)
 t = [row for row in eachrow(resources)];
 t2 = reduce(vcat, t);
