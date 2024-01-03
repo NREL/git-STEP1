@@ -62,95 +62,110 @@
         </div>
 
         <form action="{{ url_for('results')}}" method="post">
-            <div class="panel-modal" style="height: 25rem">
+            <div class="panel-modal" style="height: 30rem">
                 <div class="inner-modal">
-                    <div class="input" style="margin-right: 2.5rem">
+                    <div class="input" style="height: 10rem; display: flex;">
+                      <div style="width: 50%; height: 100%; display: flex">
                         <div class="input-label">
                           Preferred technology
                         </div>
-                        <div class="help-container">
-                          <span class="help-popup" id="carbon-help">
-                            Helpful info
-                          </span>
-                          <i class="fa fa-question-circle help-icon" id="help-icon-carbon"></i>
-                        </div>
-                        <div class="checklist-wrapper">
-                          <div class="checklist">
-                            <div style="display: flex">
-                                <input type="checkbox" id="pv" name="pv" value="pv" checked="checked" class="checkbox">
-                                <label>
-                                    PV
-                                </label>
+                      </div>
+                      <div style="width: 50%; height: 100%; display: flex">
+                        <div class="checklist-wrapper" style="height: 90%; display: block">
+                          <div style="display: flex">
+                            <div class="checklist">
+                              <div style="display: flex">
+                                  <input type="checkbox" id="pv" name="pv" value="pv" checked="checked" class="checkbox">
+                                  <label id="pv_label">
+                                      PV
+                                  </label>
+                              </div>
+                              <div style="display: flex">
+                                  <input type="checkbox" id="evacuated_tubes" name="evacuated_tubes" value="evacuated_tubes">
+                                  <label id="evacuated_tubes_label">
+                                      Evacuated Tubes
+                                  </label>
+                              </div>
+                              <div style="display: flex">
+                                  <input type="checkbox" id="flat_plate" name="flat_plate" value="flat_plate">
+                                  <label id="flat_plate_label">
+                                      Flat Plate
+                                  </label>
+                              </div>
+                              <div style="display: flex">
+                                  <input type="checkbox" id="linear_flesnel" name="lf" value="linear_flesnel">
+                                  <label id="linear_flesnel_label">
+                                      Linear Flesnel
+                                  </label>
+                              </div>
                             </div>
-                            <div style="display: flex">
-                                <input type="checkbox" id="evacuated_tubes" name="evacuated_tubes" value="evacuated_tubes">
-                                <label>
-                                    Evacuated Tubes
-                                </label>
-                            </div>
-                            <div style="display: flex">
-                                <input type="checkbox" id="flat_plate" name="flat_plate" value="flat_plate">
-                                <label>
-                                    Flat Plate
-                                </label>
-                            </div>
-                            <div style="display: flex">
-                                <input type="checkbox" id="linear_flesnel" name="linear_flesnel" value="linear_flesnel">
-                                <label>
-                                    Linear Flesnel
-                                </label>
-                            </div>
-                          </div>
-                          <div class="checklist">
-                            <div style="display: flex">
-                                <input type="checkbox" id="parabolic_trough" name="parabolic_trough" value="parabolic_trough">
-                                <label>
-                                    Parabolic Trough
-                                </label>
-                            </div>
-                            <div style="display: flex">
-                                <input type="checkbox" id="MST" name="MST" value="MST">
-                                <label>
-                                    Molten Salt Trough
-                                </label>
-                            </div>
-                            <div style="display: flex">
-                                <input type="checkbox" id="particle_tower" name="particle_tower" value="particle_tower">
-                                <label>
-                                    Particle Tower
-                                </label>
+                            <div class="checklist">
+                              <div style="display: flex">
+                                  <input type="checkbox" id="parabolic_trough" name="parabolic_trough" value="parabolic_trough">
+                                  <label id="parabolic_trough_label">
+                                      Parabolic Trough
+                                  </label>
+                              </div>
+                              <div style="display: flex">
+                                  <input type="checkbox" id="mst" name="mst" value="mst">
+                                  <label id="mst_label">
+                                      Molten Salt Trough
+                                  </label>
+                              </div>
+                              <div style="display: flex">
+                                  <input type="checkbox" id="particle_tower" name="particle_tower" value="particle_tower">
+                                  <label id="particle_tower_label">
+                                      Particle Tower
+                                  </label>
+                              </div>
                             </div>
                           </div>
+                          <div style="display: flex">
+                            <i class="fa fa-info-circle help-icon" style="margin: auto"></i>
+                            <div style="border: 2px solid #0e6dc9; padding: 5px; border-radius: 5px; margin: 0.5rem;">
+                              <div style="font-family: Roboto; font-size: 12px;">
+                                Greyed out technologies are unselectable because they are not congruent with selected media type and are outside of the selected temperature bounds.
+                              </div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                    <div class="input" style="margin-right: 20rem">
+                    <div class="input" style="height: 5rem; display: flex">
+                      <div style="width: 50%; height: 100%; display: flex">
                         <label for="MIC" class="input-label">
-                            Maximum Investment Cost
+                          Maximum Investment Cost
                         </label>
-                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-                        <input class="modal-input" name="MIC" required="required" placeholder="Enter a dollar amount">
+                      </div>
+                      <div style="width: 50%; height: 100%; display: flex">
+                        <input class="modal-input" name="mic" required="required" placeholder="Enter a dollar amount">
+                      </div>
                     </div>
-                    <div class="input" style="margin-right: 20rem">
+                    <div class="input" style="height: 5rem; display: flex">
+                      <div style="width: 50%; height: 100%; display: flex">
                         <label for="MPP" class="input-label">
-                            Maximum Payback Period
+                          Maximum Payback Period
                         </label>
-                        <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
-                        <input class="modal-input" name="MPP" required="required" placeholder="Enter a time period">
+                      </div>
+                      <div style="width: 50%; height: 100%; display: flex">
+                        <input class="modal-input" name="mpp" required="required" placeholder="Enter a time period">
+                      </div>
                     </div>
-                    <div class="input" style="margin-right: 20rem">
+                    <div class="input" style="height: 5rem; display: flex"> 
+                      <div style="width: 50%; height: 100%; display: flex">
                         <div class="input-label">
                           Decarbonization Target
                         </div>
+                      </div>
+                      <div style="width: 50%; height: 100%; display: flex">
                         <div class="help-container">
                           <span class="help-popup" id="power-help">
                             Helpful info
                           </span>
-                          <i class="fa fa-question-circle help-icon" id="help-icon-power"></i>
                         </div>
-                        <input type="range" min="0" max="100" value="50" class="slider" id="myRange" style="margin-top: 3rem; margin-left: 2rem">
-                        <div id="demo" class="decarbonize">
-              
-                        </div>
+                        <input name="slider" type="range" min="0" max="100" value="50" class="slider" id="myRange" style="margin-top: 3rem; margin-left: 2rem">
+                        <div id="demo" class="decarbonize"></div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -163,6 +178,44 @@
                 </button>
             </div>
         </form>
+        <script>
+          const temperatureBounds = {{ temperatureInput }}
+          if (temperatureBounds > 100) {
+            const pv = document.getElementById("pv");
+            pv.disabled = true;
+            pv.checked = false;
+            const pv_label = document.getElementById("pv_label");
+            pv_label.style.color = "lightgrey";
+            const evacuatedTubes = document.getElementById("evacuated_tubes");
+            evacuatedTubes.disabled = true;
+            const evacuatedTubesLabel = document.getElementById("evacuated_tubes_label");
+            evacuatedTubesLabel.style.color = "lightgrey";
+            const flatPlate = document.getElementById("flat_plate");
+            flatPlate.disabled = true;
+            const flatPlateLabel = document.getElementById("flat_plate_label");
+            flatPlateLabel.style.color = "lightgrey";
+            const linearFlesnel = document.getElementById("linear_flesnel");
+            linearFlesnel.disabled = true;
+            const linearFlesnelLabel = document.getElementById("linear_flesnel_label");
+            linearFlesnelLabel.style.color = "lightgrey";
+            const parabolicTrough = document.getElementById("parabolic_trough");
+            parabolicTrough.checked = true;
+
+          } else {
+            const parabolicTrough = document.getElementById("parabolic_trough");
+            parabolicTrough.disabled = true;
+            const parabolicTroughLabel = document.getElementById("parabolic_trough_label");
+            parabolicTroughLabel.style.color = "lightgrey";
+            const mst = document.getElementById("mst");
+            mst.disabled = true;
+            const mstLabel = document.getElementById("mst_label");
+            mstLabel.style.color = "lightgrey";
+            const particleTower = document.getElementById("particle_tower");
+            particleTower.disabled = true;
+            const particleTowerLabel = document.getElementById("particle_tower_label");
+            particleTowerLabel.style.color = "lightgrey";
+          }
+        </script>
         <script src="{{ url_for('static', filename='constraints.js') }}"></script>
     </div>
 </body>

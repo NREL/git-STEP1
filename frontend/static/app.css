@@ -377,3 +377,20 @@
     margin-left: 1rem;
     margin-right: 12.25rem;
 }
+
+.input-button {
+    height: 1.5rem;
+    margin-top: 3.5rem;
+    margin-left: 1.25rem;
+    width: 8rem;
+    border-radius: 5px;
+}
+
+.input-button:hover {
+    cursor: pointer;
+}
+
+.file-input {
+    margin-top: 3.15rem;
+    margin-left: 1.25rem;
+}
