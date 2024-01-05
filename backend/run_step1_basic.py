@@ -130,7 +130,10 @@ def run_STEP1(inputs):
     cost_total = cost_total * np.sum(load_profile_normalized) / 8760
 
     ### Create random SOC of TES profile to test passing an array to results UI
-    soc_tes = np.random.rand(8760)
+    soc_tes = []
+    for i in range(8760):
+        random_value = np.random.rand()
+        soc_tes.append(random_value)
     
     ### Check if exceeds maximum invest cost
     if cost_total > max_invest:
@@ -150,5 +153,3 @@ def run_STEP1(inputs):
         "error" : error,                            #message
     }
     return outputs
-
-out = run_STEP1(inputs)

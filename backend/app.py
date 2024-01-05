@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/static', template_folder='../frontend/templates')
 from run_step1_basic import run_STEP1
 
 inputs = {
