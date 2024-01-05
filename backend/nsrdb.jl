@@ -32,9 +32,9 @@ function get_weatherdata(lat::Float64,lon::Float64)
     weatherdata["day"] = parse.(Int64,new_df."City") # City --> day 
     weatherdata["hour"] = parse.(Int64,new_df."State") # State --> hour
     weatherdata["minute"] = parse.(Int64,new_df."Country") # Country --> minute
-    weatherdata["dn"] = parse.(Float64,new_df."Time Zone") # Time Zone --> dn (DNI)
-    weatherdata["df"] = parse.(Float64,new_df."Longitude") # Longitude --> df (DHI)
-    weatherdata["gh"] = parse.(Float64,new_df."Latitude") # Latitude --> gh (GHI)
+    weatherdata["dn"] = parse.(Float64,new_df."Time Zone") # Time Zone --> dn (Direct Normal Irradiance)
+    weatherdata["df"] = parse.(Float64,new_df."Longitude") # Longitude --> df (Direct Horizontal Irradiance)
+    weatherdata["gh"] = parse.(Float64,new_df."Latitude") # Latitude --> gh (Global Horizontal Irradiance)
     weatherdata["wspd"] = parse.(Float64,new_df."Elevation") # Elevation -> wspd
     weatherdata["tdry"] = parse.(Float64,new_df."Local Time Zone") # Local Time Zone --> tdry
     weatherdata["rhum"] = parse.(Float64,new_df."Clearsky DNI Units") # Clearsky DNI Units --> rhum (RH)

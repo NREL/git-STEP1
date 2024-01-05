@@ -143,7 +143,7 @@ function run_ssc(model::String,lat::Float64,lon::Float64,inputs::Dict,outputs::V
     end
     R["error"] = error
     #return R
-    return R["gen"]
+    return R[outputs[1]]
 end
 
 # model = "mst"
@@ -202,24 +202,24 @@ end
 ### Test case list
 # Define the dictionary with cities as keys and latitudes/longitudes as arrays
 cities_dict = Dict(
-    "New York City, NY" => [40.7128, -74.0060],
+    # "New York City, NY" => [40.7128, -74.0060],
     "Los Angeles, CA" => [34.0522, -118.2437],
-    "Chicago, IL" => [41.8781, -87.6298],
-    "Houston, TX" => [29.7604, -95.3698],
+    # "Chicago, IL" => [41.8781, -87.6298],
+    # "Houston, TX" => [29.7604, -95.3698],
     "Miami, FL" => [25.7617, -80.1918],
-    "Seattle, WA" => [47.6062, -122.3321],
-    "Denver, CO" => [39.7392, -104.9903],
+    # "Seattle, WA" => [47.6062, -122.3321],
+    # "Denver, CO" => [39.7392, -104.9903],
     # "Atlanta, GA" => [33.7490, -84.3880],
     # "Boston, MA" => [42.3601, -71.0589],
     # "San Francisco, CA" => [37.7749, -122.4194],
     # "Phoenix, AZ" => [33.4484, -112.0740],
     # "Philadelphia, PA" => [39.9526, -75.1652],
     # "San Antonio, TX" => [29.4241, -98.4936],
-    # "San Diego, CA" => [32.7157, -117.1611],
+    "San Diego, CA" => [32.7157, -117.1611],
     # "Dallas, TX" => [32.7767, -96.7970],
     # "Portland, OR" => [45.5051, -122.6750],
     # "Detroit, MI" => [42.3314, -83.0458],
-    # "Minneapolis, MN" => [44.9778, -93.2650],
+    "Minneapolis, MN" => [44.9778, -93.2650],
     # "Tampa, FL" => [27.9506, -82.4572],
     # "Charlotte, NC" => [35.2271, -80.8431],
     # "New Orleans, LA" => [29.9511, -90.0715],
@@ -227,7 +227,7 @@ cities_dict = Dict(
     # "Salt Lake City, UT" => [40.7608, -111.8910],
     # "Indianapolis, IN" => [39.7684, -86.1581],
     # "San Jose, CA" => [37.3382, -121.8863],
-    # "Columbus, OH" => [39.9612, -82.9988],
+    "Columbus, OH" => [39.9612, -82.9988],
     # "Las Vegas, NV" => [36.1699, -115.1398],
     # "Austin, TX" => [30.2500, -97.7500],
     # "Nashville, TN" => [36.1627, -86.7816],
@@ -244,8 +244,8 @@ cities_dict = Dict(
     # "Boise, ID" => [43.6150, -116.2023]
 )
 
-model = "ptc"
-outputs = ["gen"]
+model = "mst"
+outputs = ["Q_thermal"]
 tshours = [10.0,50.0,100.0,200.0,500.0]
 R_all = Dict()
 global msg = ""
@@ -280,13 +280,10 @@ end
 plot()
 for (city, values) in R_all
     normalized_values = normalize_values(values)
-    plot!(normalized_values, label=city)
+    plot!(tshours,normalized_values, label=city)
 end
 
 xlabel!("tshours [hrs]")
 ylabel!("Normalized Annual Production")
-# title!("Normalized Values of Cities")
-legend()
-
-# Display the plot
-#display(Plots.plot!())  # This line is necessary in some environments (e.g., Jupyter Notebooks) to show the plot
+#xtick_labels = ["Label1", "Label2", "Label3", "Label4", "Label5"]  # Replace with your predefined labels
+xticks!(tshours)
